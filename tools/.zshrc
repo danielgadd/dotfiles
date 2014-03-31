@@ -1,12 +1,5 @@
-# Path to your oh-my-zsh configuration.
-ZSH=/home/daniel/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-
-ZSH_THEME=daniel
+# Path to your shell configuration.
+ZSH=/home/daniel/.shell
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -48,7 +41,7 @@ ZSH_THEME=daniel
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git command-not-found web-search systemadmin history-substring-search)
 
-source $ZSH/oh-my-zsh.sh
+source $ZSH/zsh_shell.sh
 
 # User configuration
 
