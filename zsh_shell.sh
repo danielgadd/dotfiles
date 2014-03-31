@@ -39,7 +39,7 @@ else
 fi
 
 # Save the location of the current completion dump file.
-ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.shell/completiondump/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
 # Load and run compinit
 autoload -U compinit
