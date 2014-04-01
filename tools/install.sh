@@ -10,20 +10,22 @@
 # 3. create INSTALLED.file to stop the installation
 
 
-
-if [ -f /usr/bin/zsh ];
+if [ -f /usr/bin/zsh ]
 then
-   echo "File $FILE exists."
-   if [ -f ~/.shell/tools/INSTALLED.file];
+  echo "File $FILE exists."
+else
+  echo "zsh shell could not be found. Exiting to bash."
+  exit 0
+fi
+
+if [ -f ~/.shell/tools/INSTALLED.file ];
    then
       exit 0
    else
-       ln -s ~/.zshrc ~/.shell/zshrc
+       ln -s ~/.shell/zshrc ~/.zshrc
        touch ~/.shell/tools/INSTALLED.file
        echo "Shell customisations installed"
+       chsh -s /bin/zsh
+       zsh
        exit 0
-else
-   echo "zsh does not exist, falling back to bash."
-   exit 0
 fi
-
