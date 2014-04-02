@@ -28,7 +28,4 @@ Thoughts:
 
 
 SHELL PROMPT:
-
-Localhost (NON SSH'ed)
-
-PRODdgadd@remote ~
+- Shell Prompt 

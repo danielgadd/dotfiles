@@ -1,4 +1,4 @@
-# Custom ZSH Shell theme
+ustom ZSH Shell theme
 
 #-----------------------------------------------------------------------------------------------------------------------------
 # Sets the user@m in the prompt shell if connected to a remote server (ssh)
@@ -24,11 +24,14 @@ prompt_status() {
 
 prompt_git (){
   #set environment vars
-  ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
-  ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-  ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
-  ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+    ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
+    ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+    ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
   
+  # Green tick if repo is clean
+    ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}) ✔"
+ 
+  #set prompt style based on the vars set above from lib/git.zsh 
   echo -n "%{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}"
 }
 
@@ -48,7 +51,14 @@ prompt_screenID (){
  fi
 }
 #-----------------------------------------------------------------------------------------------------------------------------
-#Build prompt from functions
+# Set RPROMPT showing command history and commit # if in GIT
+
+prompt_cmdhistory () {
+  echo -n "!%{%B%F{cyan}%}%!%{%f%k%b%}"  
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
+#Build prompt from functions - Order is Important
 
 build_prompt (){
   RETVAL=$?
@@ -59,6 +69,14 @@ build_prompt (){
   prompt_status
 }
 
+#-----------------------------------------------------------------------------------------------------------------------------
+# Build rprompt from functions
+
+build_rprompt () {
+  prompt_cmdhistory
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
 #build prompt by calling all functions together
 PROMPT='$(build_prompt)'
-
+RPROMPT='$(build_rprompt)'
