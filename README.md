@@ -27,4 +27,8 @@ Thoughts:
   3. shell prompt should change based on user and local vs remote
 
 
+SHELL PROMPT:
 
+Localhost (NON SSH'ed)
+
+PRODdgadd@remote ~

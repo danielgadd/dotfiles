@@ -1,5 +1,5 @@
 # Path to your shell configuration.
-ZSH=/home/daniel/.shell
+ZSH=/home/$LOGNAME/.shell
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
