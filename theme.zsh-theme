@@ -1,4 +1,4 @@
-ustom ZSH Shell theme
+# Custom ZSH Shell theme
 
 #-----------------------------------------------------------------------------------------------------------------------------
 # Sets the user@m in the prompt shell if connected to a remote server (ssh)
@@ -50,11 +50,19 @@ prompt_screenID (){
     echo -n "%{$fg_bold[blue]%}screen:%{$fg[red]%}$(echo $STY | cut -d'.' -f 1 | cut -d'=' -f 2)%{$fg_bold[blue]%} % %{$reset_color%}"
  fi
 }
+
 #-----------------------------------------------------------------------------------------------------------------------------
-# Set RPROMPT showing command history and commit # if in GIT
+# Set RPROMPT showing command history
 
 prompt_cmdhistory () {
   echo -n "!%{%B%F{cyan}%}%!%{%f%k%b%}"  
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
+# get short commit ID if in GIT repo
+
+prompt_gitcommit_sha () {
+  echo -n "$FG[yellow]sha:$(git_prompt_short_sha)%{$reset_color%} % "
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
@@ -73,6 +81,7 @@ build_prompt (){
 # Build rprompt from functions
 
 build_rprompt () {
+  prompt_gitcommit_sha
   prompt_cmdhistory
 }
 
