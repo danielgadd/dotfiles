@@ -62,7 +62,7 @@ prompt_cmdhistory () {
 # get short commit ID if in GIT repo
 
 prompt_gitcommit_sha () {
-  echo -n "$FG[yellow]sha:$(git_prompt_short_sha)%{$reset_color%} % "
+  echo -n "$FG[yellow]sha:$(git_prompt_short_sha)%{$reset_color%} | % "
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
