@@ -36,6 +36,15 @@ prompt_git (){
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
+# show if current branch is ahead or behind
+prompt_git_branchstatus () {
+    ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg_bold[red]%}↓%{$reset_color%}|"
+    ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[red]%}↑%{$reset_color%}|"
+    ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg_bold[red]%}↓%{$fg_bold[green]%}↑%{$reset_color%}|"
+    echo -n "$(git_remote_status)"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
 #Create directory prompt segment
 
 prompt_directory (){
@@ -55,14 +64,16 @@ prompt_screenID (){
 # Set RPROMPT showing command history
 
 prompt_cmdhistory () {
-  echo -n "!%{%B%F{cyan}%}%!%{%f%k%b%}"  
+  echo -n " %B!%{%B%F{cyan}%}%!%{%f%k%b%}"  
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
 # get short commit ID if in GIT repo
 
 prompt_gitcommit_sha () {
-  echo -n "$FG[yellow]sha:$(git_prompt_short_sha)%{$reset_color%} | % "
+  if [[ -d $(git rev-parse --show-toplevel 2>/dev/null) ]]; then
+    echo -n "%B$FG[yellow]$(git_prompt_short_sha)%{$reset_color%} |"
+  fi
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
@@ -82,6 +93,7 @@ build_prompt (){
 
 build_rprompt () {
   prompt_gitcommit_sha
+  prompt_git_branchstatus
   prompt_cmdhistory
 }
 
