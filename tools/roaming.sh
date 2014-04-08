@@ -19,8 +19,8 @@
 
 if ssh $3@$1  "[ -f /usr/bin/zsh ]"
 then
-  echo "File $FILE exists."
-else
-  echo "zsh shell could not be found. Exiting to bash."
+  LocalCommand eval /usr/bin/rsync --delete -azvue ssh /development/zsh_shell/ %r@%h:~/.shell/
+  else
+    echo "zsh shell could not be found. Exiting to bash."
   exit 0
 fi
