@@ -17,10 +17,10 @@
 #
 # EG: ~/.ssh/roaming.sh 192.168.0.1 22
 
-if ssh $3@$1  "[ -f /usr/bin/zsh ]"
-then
-  LocalCommand eval /usr/bin/rsync --delete -azvue ssh /development/zsh_shell/ %r@%h:~/.shell/
-  else
-    echo "zsh shell could not be found. Exiting to bash."
-  exit 0
-fi
+#if ssh $3@$1  "[ -f /usr/bin/zsh ]"
+#then
+  /usr/bin/rsync --delete --dry-run -azvue ssh /development/zsh_shell/ | ssh -o PermitLocalCommand=no %n
+  #else
+  #echo "zsh shell could not be found. Exiting to bash."
+  #exit 0
+#fi
