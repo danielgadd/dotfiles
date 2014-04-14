@@ -28,7 +28,7 @@ if [ -f ~/.shell/tools/INSTALLED.file ];
        ln -s ~/.shell/vim/ ~/.vim
        ln -s ~/.shell/vim/vimrc ~/.vimrc
        echo "Shell customisations installed"
-       chsh -s /bin/zsh
+       chsh -s /usr/bin/zsh
        zsh
        exit 0
 fi
