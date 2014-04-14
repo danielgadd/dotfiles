@@ -1,2 +1,6 @@
 #ignore swap
 *.swp
+
+#ignore dump and installation files
+completiondump
+tools/INSTALLED.file
