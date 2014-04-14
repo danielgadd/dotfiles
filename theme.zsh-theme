@@ -8,7 +8,11 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$USER" != "daniel" || -n "$SSH_CLIENT" ]]; then
+<<<<<<< HEAD
     echo -n "%{$fg_bold[red]%}SSH:%{$reset_color%}%(!.%{%F{yellow}%}.)$user@%m: "
+=======
+    echo -n "(%{$fg[red]%}SSH:%{$reset_color%}%(!.%{%F{yellow}%}.)$user@%m: "
+>>>>>>> 58c1ed8126e7fdbe87e5d939085bdf934a06e3a6
  fi
 }
 
