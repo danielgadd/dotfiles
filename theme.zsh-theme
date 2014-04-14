@@ -82,7 +82,7 @@ prompt_gitcommit_sha () {
 # Set RPROMPT showing current time
 
 prompt_time () {
-  echo -n " %{%F{cyan}%}%@%{%f%k%b%}"
+  echo -n " %{$reset_color%}%{%F{cyan}%}%@%{%f%k%b%}"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
