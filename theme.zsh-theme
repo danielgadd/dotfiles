@@ -58,8 +58,17 @@ prompt_directory () {
 
 prompt_screenID (){
  if [ -n "$STY" ]; then
-    echo -n "%{$fg_bold[blue]%}screen:%{$fg[red]%}$(echo $STY | cut -d'.' -f 1 | cut -d'=' -f 2)%{$fg_bold[blue]%} % %{$reset_color%}"
+   echo -n "%{$fg_bold[blue]%}screen:%{$fg[red]%}($(echo $STY | cut -d'.' -f 1 | cut -d'=' -f 2))%{$fg_bold[blue]%} % %{$reset_color%}"
  fi
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
+#Show symbol on rprompt if there are detached screens
+
+prompt_detachedscreenalert (){
+  if [[ -n $(ls /var/run/screen/S-$USER) ]]; then
+   echo -n "%{$fg_bold[red]%} ●%{$reset_color%}"
+  fi
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
@@ -104,6 +113,7 @@ build_rprompt () {
   prompt_gitcommit_sha
   prompt_git_branchstatus
   #prompt_cmdhistory
+  prompt_detachedscreenalert
   prompt_time
 }
 
