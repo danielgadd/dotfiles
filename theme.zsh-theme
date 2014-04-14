@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Custom ZSH Shell theme
 
 #-----------------------------------------------------------------------------------------------------------------------------
@@ -47,9 +49,22 @@ prompt_git_branchstatus () {
 #-----------------------------------------------------------------------------------------------------------------------------
 #Create directory prompt segment
 
-prompt_directory (){
-  echo -n "$fg[cyan]%}%~ "
-}
+  current_dir_path() {
+    CURRENT=`dirname ${PWD}`
+
+    if [[ $CURRENT = / ]]; then
+      echo ""
+        elif [[ $PWD = $HOME ]]; then
+          echo ""
+        else
+          CURRENT=$(print -P %3~)
+          echo "${CURRENT%/*}/"
+      fi
+     }
+
+  prompt_directory () {
+    echo "%{$fg_bold[cyan]%}$(current_dir_path)%{$reset_color%}%{$fg[red]%}%1~%{$reset_color%}"
+  }
 
 #-----------------------------------------------------------------------------------------------------------------------------
 #Set screen prompt if attached to screen session:
@@ -77,6 +92,13 @@ prompt_gitcommit_sha () {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
+# Set RPROMPT showing current time
+
+prompt_time () {
+  echo -n " $fg[cyan]%}%@"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
 #Build prompt from functions - Order is Important
 
 build_prompt (){
@@ -94,7 +116,8 @@ build_prompt (){
 build_rprompt () {
   prompt_gitcommit_sha
   prompt_git_branchstatus
-  prompt_cmdhistory
+  #prompt_cmdhistory
+  prompt_time
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
