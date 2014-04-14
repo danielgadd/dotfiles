@@ -6,11 +6,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$USER" != "daniel" || -n "$SSH_CLIENT" ]]; then
-<<<<<<< HEAD
     echo -n "%(!.%{%F{yellow}%}.)$user@%m: "
-=======
-    echo -n "%(!.%{%F{yellow}%}.)$user@%m "
->>>>>>> ddad20457fd997f4f707bd1891d4b87bbeedb6a4
  fi
 }
 
