@@ -25,16 +25,10 @@ if [ -f ~/.shell/tools/INSTALLED.file ];
    else
        ln -s ~/.shell/zshrc ~/.zshrc
        touch ~/.shell/tools/INSTALLED.file
-       install_vim
+       ln -s ~/.shell/vim ~/.vim/
+       ln -s ~/.shell/vim/vimrc ~/.vimrc
        echo "Shell customisations installed"
        chsh -s /bin/zsh
        zsh
        exit 0
 fi
-
-
-function install_vim ()
-{
-  ln -s ~/.shell/vim ~/.vim/
-  ln -s ~/.shell/vim/vimrc ~/.vimrc
-}
