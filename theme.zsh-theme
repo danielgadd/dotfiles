@@ -6,7 +6,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$USER" != "daniel" || -n "$SSH_CLIENT" ]]; then
-    echo -n "%(!.%{%F{yellow}%}.)$user@%m"
+    echo -n "%(!.%{%F{yellow}%}.)$user@%m: "
  fi
 }
 
@@ -27,11 +27,11 @@ prompt_git (){
     ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
     ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
     ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
-  
+
   # Green tick if repo is clean
     ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}) ✔"
- 
-  #set prompt style based on the vars set above from lib/git.zsh 
+
+  #set prompt style based on the vars set above from lib/git.zsh
   echo -n "%{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}"
 }
 
@@ -64,7 +64,7 @@ prompt_screenID (){
 # Set RPROMPT showing command history
 
 prompt_cmdhistory () {
-  echo -n " %B!%{%B%F{cyan}%}%!%{%f%k%b%}"  
+  echo -n " %B!%{%B%F{cyan}%}%!%{%f%k%b%}"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
