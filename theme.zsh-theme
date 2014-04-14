@@ -66,7 +66,7 @@ prompt_screenID (){
 #Show symbol on rprompt if there are detached screens
 
 prompt_detachedscreenalert (){
-  if [[ -n $(ls /var/run/screen/S-$USER) ]]; then
+  if [[ -n $(ls /var/run/screen/S-$USER 2> /dev/null ) ]]; then
    echo -n "%{$fg_bold[red]%} ●%{$reset_color%}"
   fi
 }
