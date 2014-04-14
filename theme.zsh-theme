@@ -92,6 +92,13 @@ prompt_gitcommit_sha () {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
+# Set RPROMPT showing current time
+
+prompt_time () {
+  echo -n " $fg[cyan]%}%@"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
 #Build prompt from functions - Order is Important
 
 build_prompt (){
@@ -109,7 +116,8 @@ build_prompt (){
 build_rprompt () {
   prompt_gitcommit_sha
   prompt_git_branchstatus
-  prompt_cmdhistory
+  #prompt_cmdhistory
+  prompt_time
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
