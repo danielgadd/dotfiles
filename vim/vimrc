@@ -66,11 +66,11 @@ set hidden
 "nerdtree settings
 "let g:NERDTreeMouseMode = 2
 "let g:NERDTreeWinSize = 40
-"
+
 ""explorer mappings
 nnoremap <f1> :BufExplorer<cr>
 nnoremap <f2> :NERDTreeToggle<cr>
 nnoremap <f3> :TagbarToggle<cr>
 
-
-
+"Show markdown files in google-chrome
+noremap <F5> :!google-chrome file://%:p > /dev/null<CR><CR>
