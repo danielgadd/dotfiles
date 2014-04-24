@@ -152,3 +152,6 @@ bar {
 #i3lock shortcut bind to ctrl+alt+delete
 bindsym Control+mod1+Delete exec i3lock -c000000
 
+
+#autostart applications
+exec --no-startup-id "~/.shell/i3/autostart.sh"
