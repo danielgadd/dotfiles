@@ -27,6 +27,8 @@ if [ -f ~/.shell/tools/INSTALLED.file ];
        touch ~/.shell/tools/INSTALLED.file
        ln -s ~/.shell/vim/ ~/.vim
        ln -s ~/.shell/vim/vimrc ~/.vimrc
+       mkdir ~/.i3/
+       ln -s ~/.shell/i3/i3_config ~/.i3/config
        echo "Shell customisations installed"
        chsh -s /usr/bin/zsh
        zsh
