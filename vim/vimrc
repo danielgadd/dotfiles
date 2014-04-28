@@ -1,5 +1,9 @@
 set nocompatible
 
+"set colorscheme
+colorscheme delek
+set background=dark
+
 execute pathogen#infect()
 call pathogen#helptags() " generate helptags for everything in 'runtimepath'
 syntax on
@@ -24,6 +28,8 @@ set hlsearch    "hilight searches by default
 set wrap        "dont wrap lines
 set linebreak   "wrap lines at convenient points
 
+set ruler       "show current position
+
 "default indent settings
 set shiftwidth=2
 set softtabstop=2
@@ -38,6 +44,7 @@ set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
 set nofoldenable        "dont fold by default
 
+"set wildmenu tab completion for cmdline
 set wildmode=list:longest   "make cmdline tab completion similar to bash
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
@@ -49,12 +56,15 @@ set scrolloff=3
 set sidescrolloff=7
 set sidescroll=1
 
-"load ftplugins and indent files
+"load filetype-plugins and indent files
 filetype plugin on
 filetype indent on
 
 "turn on syntax highlighting
 syntax on
+
+"set autoread to update files if saved externally to vim
+set autoread
 
 "some stuff to get the mouse going in term
 set mouse=a
@@ -67,17 +77,37 @@ set t_Co=256
 set hidden
 
 "nerdtree settings
-"let g:NERDTreeMouseMode = 2
-"let g:NERDTreeWinSize = 40
+let g:NERDTreeMouseMode = 2
+let g:NERDTreeWinSize = 40
 "
 ""explorer mappings
 nnoremap <f1> :BufExplorer<cr>
 nnoremap <f2> :NERDTreeToggle<cr>
 nnoremap <f3> :TagbarToggle<cr>
+nnoremap <f4> :GundoToggle<cr>
 
 "open *.md files in Google to preview them
 noremap <F5> :!google-chrome file://%:p > /dev/null<CR><CR>
 
-"Window Mappings
+"Split Window mappings
 nnoremap <f12> :botright vnew<cr>
 nnoremap <f10> :topleft new<cr>
+
+"Remap ; to : (so dont need to hit shift+;)
+nnoremap ; :
+vnoremap ; :
+
+"set shortcuts for tab commands
+nnoremap tt :tabnext<CR>
+nnoremap tn :tabnew<CR>
+nnoremap td :tabclose<CR>
+
+"Indentation Guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+nnoremap ig :IndentGuidesToggle<CR>
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=234
+autocmd VimEnter *  :IndentGuidesToggle
