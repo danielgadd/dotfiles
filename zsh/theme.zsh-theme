@@ -50,7 +50,7 @@ prompt_git_branchstatus () {
 #Create directory prompt segment
 
 prompt_directory () {
-  echo -n "$fg[cyan]%}%~ "
+  echo -n "%{$fg[cyan]%}${PWD/$HOME/~} "
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
