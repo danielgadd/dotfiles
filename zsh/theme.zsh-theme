@@ -63,6 +63,15 @@ prompt_screenID (){
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
+#Show symbol on rprompt if there are detached tmux sessions
+
+prompt_detachedtmuxalert (){
+  if [ -n "$(tmux ls | grep -v attached 2> /dev/null)" ]; then
+   echo -n "%{$fg_bold[red]%} ●%{$reset_color%}"
+  fi
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
 #Show symbol on rprompt if there are detached screens
 
 prompt_detachedscreenalert (){
@@ -114,6 +123,7 @@ build_rprompt () {
   prompt_git_branchstatus
   #prompt_cmdhistory
   prompt_detachedscreenalert
+  prompt_detachedtmuxalert
   prompt_time
 }
 
