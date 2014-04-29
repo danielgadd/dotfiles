@@ -6,17 +6,20 @@ ssh() {
       command ssh $@
       return
     fi
-   # The hostname is the last parameter (i.e. ${(P)#})
-   local remote=${${(P)#}%.*}
-   local old_name="$(tmux display-message -p '#W')"
-   local renamed=0
-   # Save the current name
-   if [[ $remote != -* ]]; then
-                                                             renamed=1
-  tmux rename-window "ssh: $remote"
-                                                                        fi
-                                                                             command ssh $@
-    if [[ $renamed == 1 ]]; then
-      tmux rename-window "$old_name"
-    fi
-  }
+
+  # The hostname is the last parameter (i.e. ${(P)#})
+  local remote=${${(P)#}%.*}
+  local old_name="$(tmux display-message -p '#W')"
+  local renamed=0
+
+  # Save the current name
+  if [[ $remote != -* ]]; then
+    renamed=1
+    tmux rename-window "ssh: $remote"
+  fi
+
+  command ssh $@
+  if [[ $renamed == 1 ]]; then
+    tmux rename-window "$old_name"
+  fi
+}
