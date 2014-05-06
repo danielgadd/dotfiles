@@ -66,7 +66,7 @@ prompt_screenID (){
 #Show symbol on rprompt if there are detached tmux sessions
 
 prompt_detachedtmuxalert (){
-  if [ -n "$(tmux ls 2> /dev/null | grep -v attached)" ]; then
+  if [[ -n "$(tmux ls 2> /dev/null | grep -v attached)" && -z "$TMUX" ]]; then
    echo -n "%{$fg_bold[red]%} ●%{$reset_color%}"
   fi
 }
