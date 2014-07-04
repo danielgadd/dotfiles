@@ -13,7 +13,7 @@
 
 if [ -f /usr/bin/zsh ]
 then
-  echo "File $FILE exists."
+  echo "zsh found - setup can continue."
 else
   echo "zsh shell could not be found. Exiting to bash."
   exit 0

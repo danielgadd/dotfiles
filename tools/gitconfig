@@ -34,3 +34,6 @@
 	history-view-vpane-position = 421
 	main-window-view = HistoryView
 	file-view-vpane-position = 934
+[alias]
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
