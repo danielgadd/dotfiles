@@ -94,7 +94,9 @@ bindsym XF86Launch6 workspace 2
 bindsym $mod+3 workspace 3
 bindsym XF86Launch7 workspace 3
 bindsym $mod+4 workspace 4
+bindsym XF86Launch8 workspace 4
 bindsym $mod+5 workspace 5
+bindsym XF86Launch9 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -154,7 +156,6 @@ bar {
 
 #Bind crtl+alt+del to i3lock (and move to safe window):
 bindsym Control+mod1+Delete exec i3-msg workspace 1 && i3lock -c000000
-
 #Bind Keyboard Calc key to lock screen
 bindcode 148 exec i3-msg workspace 1 && i3lock -c000000
 
