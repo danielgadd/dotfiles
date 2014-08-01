@@ -30,6 +30,8 @@ set linebreak   "wrap lines at convenient points
 
 set ruler       "show current position
 
+set noshowmode "dont show the current mode as its already in the status bar.
+
 "default indent settings
 set shiftwidth=2
 set softtabstop=2
@@ -97,7 +99,10 @@ nnoremap <f10> :topleft new<cr>
 nnoremap ; :
 vnoremap ; :
 
-"set shortcuts for tab commands
+" I can type :help on my own, thanks
+noremap <F1> <Esc>
+
+"I like tabs so... set shortcuts for tab commands
 nnoremap tt :tabnext<CR>
 nnoremap tn :tabnew<CR>
 nnoremap td :tabclose<CR>
