@@ -10,18 +10,19 @@ syntax on
 filetype plugin indent on
 set laststatus=2
 
+" === Set some useful stuff ===
 
-"allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+set backspace=indent,eol,start "allow backspacing over everything in insert mode
 
-"store lots of :cmdline history
-set history=1000
+set history=1000 "store lots of :cmdline history
 
 set showcmd     "show incomplete cmds down the bottom
 set showmode    "show current mode down the bottom
+set title       "change the terminal's title
 
 set number      "show line numbers
 
+set ignorecase  "ignore case when searching
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
 
@@ -31,6 +32,12 @@ set linebreak   "wrap lines at convenient points
 set ruler       "show current position
 
 set noshowmode "dont show the current mode as its already in the status bar.
+
+set hidden     "I like buffers and undo buffers, so dont close them
+
+"never ever let Vim write a backup file! Use modern ways for tracking your changes, for God’s sake.
+set nobackup
+set noswapfile
 
 "default indent settings
 set shiftwidth=2
@@ -75,8 +82,10 @@ set ttymouse=xterm2
 "tell the term has 256 colors
 set t_Co=256
 
-"hide buffers when not displayed
-set hidden
+"highlight annoying whitespace
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+autocmd filetype html,xml set listchars-=tab:>. "execpt where highlighting is annoying
 
 "nerdtree settings
 let g:NERDTreeMouseMode = 2
@@ -91,16 +100,12 @@ nnoremap <f4> :GundoToggle<cr>
 "open *.md files in Google to preview them
 noremap <F5> :!google-chrome file://%:p > /dev/null<CR><CR>
 
-"Split Window mappings
-nnoremap <f12> :botright vnew<cr>
-nnoremap <f10> :topleft new<cr>
+"map paste for insert mode
+set pastetoggle=<f12>
 
 "Remap ; to : (so dont need to hit shift+;)
 nnoremap ; :
 vnoremap ; :
-
-" I can type :help on my own, thanks
-noremap <F1> <Esc>
 
 "I like tabs so... set shortcuts for tab commands
 nnoremap tt :tabnext<CR>
