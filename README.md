@@ -1,31 +1,18 @@
-########################################################
-# 						       #
-#                CUSTOMISED ZSH_SHELL                  #
-#						       #
-# This project is to create a zsh shell environment    #
-# which is customised version oh oh-my-zsh             #
-# and using basic scp/rysnc making the shell roamable. #
-#						       #
-########################################################
+My Dotfiles Repo
+------------------
 
-ToDo:
-Copy over shell custom plugins and themes to current git
-create test user/environment (vm)
-Create .zshrc file
+This is my personal git repo for my dofiles I use on my computers.
 
-write bash script which will fire on ssh connect:
-  1. Check if zsh is installed - if not exit
-  2. look for installed file .installed
-  3. diff local and remote copy
-  4. reload zsh shell
+Most stuff is from other repos and blog sites, but needed to put it somewhere as my local git server (raspberry pi) isnt very reliable.
 
+# What is covered?
 
+I Have the following config Files in this repo:
+* i3wm
+* tmux
+* zsh
+* terminal fonts
 
-Thoughts:
-  1. Create argument in script to bypass zsh copy
-  2. use .ssh/config file to specify global git repo (or file location)
-  3. shell prompt should change based on user and local vs remote
+# Notes
 
-
-SHELL PROMPT:
-- Shell Prompt 
+Happy to have it cloned and push requests made, but please remember these are my personal dotfiles and I may (or may not) like some changes as I have a comfortable workflow. But Please share anything as its all open source.
