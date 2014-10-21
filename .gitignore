@@ -4,3 +4,6 @@
 #ignore dump and installation files
 completiondump
 tools/INSTALLED.file
+
+# Ignore caching
+zsh/cache
