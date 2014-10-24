@@ -31,9 +31,9 @@ set linebreak   "wrap lines at convenient points
 
 set ruler       "show current position
 
-set noshowmode "dont show the current mode as its already in the status bar.
+set noshowmode  "dont show the current mode as its already in the status bar.
 
-set hidden     "I like buffers and undo buffers, so dont close them
+set hidden      "I like buffers and undo buffers, so dont close them
 
 "never ever let Vim write a backup file! Use modern ways for tracking your changes, for God’s sake.
 set nobackup
@@ -61,7 +61,7 @@ set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
 set formatoptions-=o "dont continue comments when pushing o/O
 
 "vertical/horizontal scroll off settings
-set scrolloff=3
+set scrolloff=5
 set sidescrolloff=7
 set sidescroll=1
 
@@ -72,15 +72,13 @@ filetype indent on
 "turn on syntax highlighting
 syntax on
 
-"set autoread to update files if saved externally to vim
-set autoread
+set autoread "set autoread to update files if saved externally to vim
 
 "some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=xterm2
 
-"tell the term has 256 colors
-set t_Co=256
+set t_Co=256 "tell the term has 256 colors
 
 "highlight annoying whitespace
 set list
