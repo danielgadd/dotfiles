@@ -78,7 +78,7 @@ set autoread "set autoread to update files if saved externally to vim
 set mouse=a
 set ttymouse=xterm2
 
-set t_Co=256 "tell the term has 256 colors
+set t_Co=256 "tell the terminal has 256 colors
 
 "highlight annoying whitespace
 set list
