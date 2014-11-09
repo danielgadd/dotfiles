@@ -34,3 +34,7 @@ alias sl=ls # often screw this up
 
 alias afind='ack-grep -il'
 
+
+# My Aliases used for commands I like to use:
+
+alias ports='echo " " && echo -e "\033[1mListening Ports: ipv4\033[m" && netstat -tuan4 | grep LISTEN && echo " " && echo -e "\033[1mListening Ports: ipv6\033[m" && netstat -tuan6 | grep LISTEN'
