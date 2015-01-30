@@ -97,6 +97,15 @@ prompt_gitcommit_sha () {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
+# show current rvm gemset (if not defult)
+
+prompt_rvm () {
+if [ -z $(rvm-prompt | grep -Ev '@') ]; then
+    echo -n "%B$FG[red]$(rvm-prompt) %{$reset_color%}| "
+  fi
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
 # Set RPROMPT showing current time
 
 prompt_time () {
@@ -119,6 +128,7 @@ build_prompt (){
 # Build rprompt from functions
 
 build_rprompt () {
+  prompt_rvm
   prompt_gitcommit_sha
   prompt_git_branchstatus
   #prompt_cmdhistory
