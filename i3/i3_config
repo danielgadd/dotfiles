@@ -178,8 +178,12 @@ bar {
 
 #Bind crtl+alt+del to i3lock (and move to safe window):
 bindsym Control+mod1+Delete exec i3-msg workspace $tag1 && i3lock -c000000
+
 #Bind Keyboard Calc key to lock screen
 bindcode 148 exec i3-msg workspace $tag1 && i3lock -c000000
+
+# use xautolock to call i3lock after 5mins of inactivity:
+exec xautolock -time 5 -locker 'i3-msg workspace $tag1 && i3lock -c000000' &
 
 #Bind Some Keys to shortcuts I use Often:
 bindsym XF86Documents exec thunar
