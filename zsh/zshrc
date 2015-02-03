@@ -83,4 +83,6 @@ setopt HIST_IGNORE_DUPS
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source ~/.rvm/scripts/rvm          # Load RVM as a function
 
+alias rake="noglob rake"           # Fix rake command not to use globbing
+
 export EDITOR="/usr/bin/vim"
