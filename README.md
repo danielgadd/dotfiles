@@ -8,7 +8,7 @@ Most stuff is from other repos and blog sites, but needed to put it somewhere as
 ## Installation
 
 for linux:
-`git clone git@github.com:daniel-gadd/dotfiles.git ~/.shell && ~/.shell/tools/install.sh`
+`git clone https://github.com/daniel-gadd/dotfiles.git ~/.shell && ~/.shell/tools/install.sh`
 
 ## What is covered?
 
