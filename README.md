@@ -17,6 +17,7 @@ I Have the following config Files in this repo:
 * tmux
 * zsh
 * terminal fonts
+* IRB ruby shell
 
 ## Notes
 
