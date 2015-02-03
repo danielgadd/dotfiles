@@ -31,6 +31,9 @@ if [ -f ~/.shell/tools/INSTALLED.file ];
        ln -s ~/.shell/i3/i3_config ~/.i3/config
        ln -s ~/.shell/tools/gitconfig ~/.gitconfig
        echo "Shell customisations installed"
+       ln -s ~/.shell/irb/irbrc ~/.irbrc
+       ln -s ~/.shell/irb/boson/commands/common ~/.boson/commands/common
+       echo "IRB Customisations Installed"
        chsh -s /usr/bin/zsh
        zsh
        exit 0
