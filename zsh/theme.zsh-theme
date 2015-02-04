@@ -92,7 +92,7 @@ prompt_cmdhistory () {
 
 prompt_gitcommit_sha () {
   if [[ -d $(git rev-parse --show-toplevel 2>/dev/null) ]]; then
-    echo -n "%B$FG[yellow]$(git_prompt_short_sha)%{$reset_color%} |"
+    echo -n "%B%F{yellow}$(git_prompt_short_sha)%{$reset_color%} |"
   fi
 }
 
@@ -101,7 +101,7 @@ prompt_gitcommit_sha () {
 
 prompt_rvm () {
 if [ -z $(rvm-prompt | grep -Ev '@') ]; then
-    echo -n "%B$FG[red]$(rvm-prompt) %{$reset_color%}| "
+    echo -n "%B%F{red}$(rvm-prompt) %{$reset_color%}| "
   fi
 }
 
@@ -110,6 +110,13 @@ if [ -z $(rvm-prompt | grep -Ev '@') ]; then
 
 prompt_time () {
   echo -n " %{$reset_color%}%{%F{cyan}%}%@%{%f%k%b%}"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
+# Reset Colour, This can be called multiple times
+
+prompt_clear () {
+  echo -n " %{$reset_color%}"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
@@ -128,6 +135,7 @@ build_prompt (){
 # Build rprompt from functions
 
 build_rprompt () {
+  prompt_clear
   prompt_rvm
   prompt_gitcommit_sha
   prompt_git_branchstatus
