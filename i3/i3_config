@@ -183,7 +183,7 @@ bindsym Control+mod1+Delete exec i3-msg workspace $tag1 && i3lock -c000000
 bindcode 148 exec i3-msg workspace $tag1 && i3lock -c000000
 
 # use xautolock to call i3lock after 5mins of inactivity:
-exec xautolock -time 5 -locker 'i3-msg workspace $tag1 && i3lock -c000000' &
+exec xautolock -time 5 -secure -corners 0-00 -locker 'i3-msg workspace $tag1 && i3lock -c000000' &
 
 #Bind Some Keys to shortcuts I use Often:
 bindsym XF86Documents exec thunar
