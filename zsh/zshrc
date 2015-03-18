@@ -39,7 +39,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found web-search systemadmin history-substring-search zsh-syntax-highlighting sudo ssh-agent gpg-agent zaw tmuxinator)
+plugins=(git command-not-found web-search systemadmin history-substring-search sudo ssh-agent gpg-agent zaw tmuxinator zsh-syntax-highlighting)
 
 #Enable 256 Colours in TERMINATOR:
 export TERM=xterm
