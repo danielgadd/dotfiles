@@ -84,7 +84,7 @@ prompt_detachedscreenalert (){
 # Set RPROMPT showing command history
 
 prompt_cmdhistory () {
-  echo -n " %B!%{%B%F{cyan}%}%!%{%f%k%b%}"
+  echo -n " %B!%{%B%F{cyan}%}%!%{%f%k%b%} |"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
@@ -139,7 +139,7 @@ build_rprompt () {
   prompt_rvm
   prompt_gitcommit_sha
   prompt_git_branchstatus
-  #prompt_cmdhistory
+  prompt_cmdhistory
   prompt_detachedscreenalert
   prompt_detachedtmuxalert
   prompt_time
