@@ -113,6 +113,16 @@ prompt_time () {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------------
+# Show suspended application (if Any)
+
+prompt_suspended_job () {
+
+  if [[ -n $(jobs | grep '+' | awk '{print $4}' 2>/dev/null) ]]; then
+    echo -n "%B%F{white}$(jobs | grep '+' | awk '{print $4}')%{$reset_color%} |"
+  fi
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------
 # Reset Colour, This can be called multiple times
 
 prompt_clear () {
@@ -136,6 +146,7 @@ build_prompt (){
 
 build_rprompt () {
   prompt_clear
+  prompt_suspended_job
   prompt_rvm
   prompt_gitcommit_sha
   prompt_git_branchstatus
