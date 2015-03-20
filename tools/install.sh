@@ -36,7 +36,5 @@ if [ -f ~/.shell/tools/INSTALLED.file ];
        echo "IRB Customisations Installed"
        ln -s ~/.shell/tools/gemrc ~/.gemrc
        echo "gemrc Customisations Installed"
-       chsh -s /usr/bin/zsh
-       zsh
        exit 0
 fi
