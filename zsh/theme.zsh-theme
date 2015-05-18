@@ -101,7 +101,7 @@ prompt_gitcommit_sha () {
 
 prompt_rvm () {
 if [ -z $(rvm-prompt | grep -Ev '@') ]; then
-    echo -n "%B%F{red}$(rvm-prompt) %{$reset_color%}| "
+    echo -n " %B%F{red}$(rvm-prompt) %{$reset_color%}| "
   fi
 }
 
