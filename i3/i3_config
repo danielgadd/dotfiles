@@ -192,8 +192,7 @@ bindsym XF86Messenger exec i3-msg workspace $tag3 && pidgin
 
 #start applets (for Network and Sound)
 exec --no-startup-id nm-applet
-exec --no-startup-id gnome-sound-applet
-exec --no-startup-id gnome-settings-daemon
+exec unity-settings-daemon
 
 #Bind XF Keys for Spotify Media Mangement
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
