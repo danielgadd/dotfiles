@@ -150,7 +150,7 @@ build_rprompt () {
   prompt_rvm
   prompt_gitcommit_sha
   prompt_git_branchstatus
-  prompt_cmdhistory
+  #prompt_cmdhistory
   prompt_detachedscreenalert
   prompt_detachedtmuxalert
   prompt_time
