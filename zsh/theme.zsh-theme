@@ -40,9 +40,9 @@ prompt_git (){
 #-----------------------------------------------------------------------------------------------------------------------------
 # show if current branch is ahead or behind
 prompt_git_branchstatus () {
-    ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg_bold[red]%}↓%{$reset_color%}|"
-    ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[red]%}↑%{$reset_color%}|"
-    ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg_bold[red]%}↓%{$fg_bold[green]%}↑%{$reset_color%}|"
+    ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %{$fg_bold[red]%}↓%{$reset_color%} |"
+    ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %{$fg_bold[red]%}↑%{$reset_color%} |"
+    ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE=" %{$fg_bold[red]%}↓%{$fg_bold[green]%}↑%{$reset_color%} |"
     echo -n "$(git_remote_status)"
 }
 
