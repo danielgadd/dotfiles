@@ -7,6 +7,7 @@ set bg=dark
 execute pathogen#infect()
 call pathogen#helptags()   " generate helptags for everything in 'runtimepath'
 set laststatus=2
+set encoding=utf-8
 
 " === Set some useful stuff ===
 
@@ -42,9 +43,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
-
-"set indentation colours
-let g:indentLine_color_term = 10
+set fo=tcq
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -79,14 +78,18 @@ set ttymouse=xterm2
 set t_Co=256 "tell the terminal has 256 colors
 
 "highlight annoying whitespace
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
 autocmd filetype html,xml set listchars-=tab:>. "execpt where highlighting is annoying
+
+
+" Change Comment colour from blue to cyan
+highlight comment ctermfg=cyan
+
 
 "nerdtree settings
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
-"
+
+
 ""explorer mappings
 nnoremap <f1> :BufExplorer<cr>
 nnoremap <f2> :NERDTreeToggle<cr>
