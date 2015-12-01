@@ -118,7 +118,7 @@ prompt_time () {
 prompt_suspended_job () {
 
   if [[ -n $(jobs | grep '+' | awk '{print $4}' 2>/dev/null) ]]; then
-    echo -n "%B%F{white}$(jobs | grep '+' | awk '{print $4}')%{$reset_color%} |"
+    echo -n "%B%F{grey}$(jobs | grep '+' | awk '{print $4}')%{$reset_color%} |"
   fi
 }
 
