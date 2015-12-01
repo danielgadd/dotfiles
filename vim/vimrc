@@ -2,7 +2,7 @@ set nocompatible
 
 "set colorscheme
 colorscheme delek
-set background=dark
+set bg=dark
 
 execute pathogen#infect()
 call pathogen#helptags() " generate helptags for everything in 'runtimepath'
