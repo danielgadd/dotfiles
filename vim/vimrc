@@ -5,9 +5,7 @@ colorscheme delek
 set bg=dark
 
 execute pathogen#infect()
-call pathogen#helptags() " generate helptags for everything in 'runtimepath'
-syntax on
-filetype plugin indent on
+call pathogen#helptags()   " generate helptags for everything in 'runtimepath'
 set laststatus=2
 
 " === Set some useful stuff ===
