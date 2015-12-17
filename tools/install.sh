@@ -23,7 +23,7 @@ if [ -f ~/.shell/tools/INSTALLED.file ];
    then
       exit 0
    else
-       ln -s ~/.shell/zsh/zshrc ~/.zshrc
+       ln -s ~/.shell/zshrc ~/.zshrc
        touch ~/.shell/tools/INSTALLED.file
        ln -s ~/.shell/vim/ ~/.vim
        ln -s ~/.shell/vim/vimrc ~/.vimrc
