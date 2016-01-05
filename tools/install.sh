@@ -23,7 +23,11 @@ if [ -f ~/.shell/tools/INSTALLED.file ];
    then
       exit 0
    else
-       ln -s ~/.shell/zsh/zshrc ~/.zshrc
+       # This is a little nasty, but it'll do, for now
+       cd ~/.shell; git submodule init; git submodule update
+       ln -s ~/.shell/zsh_customisations/zshrc ~/.zshrc
+       ln -s ~/.shell/zsh_customisations/*.zsh* ~/.shell/zsh/custom/
+       ln -s ~/.shell/zsh_customisations/plugins/* ~/.shell/zsh/custom/plugins/
        touch ~/.shell/tools/INSTALLED.file
        ln -s ~/.shell/vim/ ~/.vim
        ln -s ~/.shell/vim/vimrc ~/.vimrc
