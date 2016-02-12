@@ -7,6 +7,9 @@ alias irssi="TERM=screen-256color irssi"
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
 
+# Setup BTRFS command aliases
+alias btrdf="sudo btrfs filesystem show"
+
 
 # Docker Stuff
 alias tor-browser="xhost +local:docker; docker rm -f tor-browser && docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name tor-browser jess/tor-browser"
