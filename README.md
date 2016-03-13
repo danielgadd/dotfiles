@@ -21,4 +21,10 @@ I Have the following config Files in this repo:
 
 ## Notes
 
-Happy to have it cloned and push requests made, but please remember these are my personal dotfiles and I may (or may not) like some changes as I have a comfortable workflow. But Please share anything as its all open source.
+### How to update the zsh submodule:
+
+* `cd zsh`
+* `git fetch`
+* `git pull origin master`
+* add the `/zsh` folder using `git add`
+* Commit Changes and push
