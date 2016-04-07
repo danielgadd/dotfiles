@@ -12,7 +12,11 @@ alias btrdf="sudo btrfs filesystem show"
 
 
 # Docker Stuff
-alias tor-browser="xhost +local:docker; docker rm -f tor-browser && docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name tor-browser jess/tor-browser"
+alias tor-browser="xhost +local:docker; docker rm tor-browser; docker run -dit -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name tor-browser jess/tor-browser"
+
   # docker commands
   alias dps="docker ps"
   alias dpsa="docker ps -a"
+
+# Development Commands
+alias tclsh="rlwrap tclsh"
