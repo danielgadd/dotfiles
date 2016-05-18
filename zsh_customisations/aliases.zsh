@@ -4,6 +4,10 @@ alias ports='echo " " && echo -e "\033[1mListening Ports: ipv4\033[m" && netstat
 alias ssh="rm ~/.ssh/config; cat ~/.ssh/conf.d/* | sed '/vim: syntax/d' > ~/.ssh/config && chmod 0600 ~/.ssh/config && ssh"
 alias irssi="TERM=screen-256color irssi"
 
+# Stupid zsh autocorrect gets in my way...
+alias killall="nocorrect killall"
+alias docker="nocorrect docker"
+
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
 
