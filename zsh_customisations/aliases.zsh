@@ -8,6 +8,9 @@ alias irssi="TERM=screen-256color irssi"
 alias killall="nocorrect killall"
 alias docker="nocorrect docker"
 
+# Who uses vi? We have vim - this just gets in my way....
+alias vi="vim"
+
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
 
