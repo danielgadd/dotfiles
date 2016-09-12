@@ -11,7 +11,7 @@
 # 3. create INSTALLED.file to stop the installation
 
 
-if [ -f /usr/bin/zsh ]
+if [ -f /bin/zsh ]
 then
   echo "zsh found - setup can continue."
 else
