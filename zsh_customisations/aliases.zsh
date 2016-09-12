@@ -14,6 +14,10 @@ alias vi="vim"
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
 
+# gpg vs gpg2
+alias gpg="gpg2"
+
+
 # Setup BTRFS command aliases
 alias btrdf="sudo btrfs filesystem show"
 
