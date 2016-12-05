@@ -31,3 +31,6 @@ alias tor-browser="xhost +local:docker; docker rm tor-browser; docker run -dit -
 
 # Development Commands
 alias tclsh="rlwrap tclsh"
+
+# Just because:
+alias yolo="git commit -am \"DEAL WITH IT\" && git push -f origin master"
