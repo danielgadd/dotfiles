@@ -19,6 +19,8 @@ set showcmd     "show incomplete cmds down the bottom
 set showmode    "show current mode down the bottom
 set title       "change the terminal's title
 
+set modeline    "Enable Vim to read the firstline of a file for applying auto-settings
+
 set number      "show line numbers
 
 set ignorecase  "ignore case when searching
