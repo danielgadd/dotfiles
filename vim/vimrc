@@ -99,7 +99,7 @@ nnoremap <f3> :TagbarToggle<cr>
 nnoremap <f4> :GundoToggle<cr>
 
 "open *.md files in Google to preview them
-noremap <F5> :!google-chrome file://%:p > /dev/null<CR><CR>
+noremap <F5> :!open -a "Google Chrome" %
 
 "map paste for insert mode
 set pastetoggle=<f12>

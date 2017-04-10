@@ -2,9 +2,6 @@
 export ZSH=$HOME/.shell/zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="danielgadd"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -70,13 +67,17 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
 
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source ~/.rvm/scripts/rvm          # Load RVM as a function
 
 alias rake="noglob rake"           # Fix rake command not to use globbing
 
 export EDITOR="/usr/bin/vim"
+
+## Setup ssh-agent plugin
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities id_rsa id_ed25519
+zstyle :omz:plugins:ssh-agent lifetime 48h
 
 # ----------------------------
 
