@@ -1,9 +1,5 @@
 #ignore swap
 *.swp
 
-#ignore dump and installation files
-completiondump
-tools/INSTALLED.file
-
-# Ignore caching
-zsh/cache
+# Ignore vim plugins
+vim/bundle/
