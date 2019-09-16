@@ -1,0 +1,119 @@
+# .zshrc
+
+#Set emacs style keyboard shortcuts
+bindkey -e
+
+# Load zplugin
+declare -A ZPLGM
+ZPLGM[HOME_DIR]=~/.shell/zsh/zplugin
+source ~/.shell/zsh/zplugin/bin/zplugin.zsh
+
+autoload -U promptinit; promptinit
+
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+
+# Source my aliases
+source ~/.shell/zsh/aliases.zsh
+
+#auto cd into dir without typing cd
+setopt auto_cd
+
+# Setup Directory stack
+setopt auto_pushd autopushd pushdminus pushdsilent pushdtohome pushd_ignore_dups
+
+#Load zplugin plugins
+zplugin light zdharma/fast-syntax-highlighting
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zplugin snippet OMZ::lib/history.zsh
+zplugin light zsh-users/zsh-history-substring-search
+
+#powerline theme
+zplugin light romkatv/powerlevel10k
+
+# gpg-agent
+zplugin ice wait'1' lucid
+zplugin light laggardkernel/zsh-gpg-agent
+
+# Some Custom Autocomplete stuff
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*' file-sort modification reverse
+zstyle ':completion:*:default' menu 'select=0'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' list-colors ''
+zstyle ':completion::complete:cd:' tag-order local-directories path-directories
+zstyle ':completion:*:functions' ignored-patterns '_*'                          # don't auto-complete internal functions (ones prefixed with _)
+zstyle ':completion:*:warnings' format $'\e[01;31m-- No Matches Found --\e[0m'
+zstyle ':completion:*:descriptions' format $'\e[01;33m-- %d --\e[0m'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' special-dirs true
+
+# Command History
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt NO_HIST_BEEP
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+
+# Allow substring search
+source ~/.shell/zsh/zplugin/plugins/zsh-users---zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# key bindings
+typeset -g -A key
+
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Insert]="${terminfo[kich1]}"
+key[Backspace]="${terminfo[kbs]}"
+key[Delete]="${terminfo[kdch1]}"
+key[Up]="${terminfo[kcuu1]}"
+key[Down]="${terminfo[kcud1]}"
+key[Left]="${terminfo[kcub1]}"
+key[Right]="${terminfo[kcuf1]}"
+key[PageUp]="${terminfo[kpp]}"
+key[PageDown]="${terminfo[knp]}"
+key[ShiftTab]="${terminfo[kcbt]}"
+
+# setup key accordingly
+[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
+[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"    overwrite-mode
+[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}" backward-delete-char
+[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"    delete-char
+[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"        history-substring-search-up
+[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"      history-substring-search-down
+[[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"      backward-char
+[[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"     forward-char
+[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"    beginning-of-buffer-or-history
+[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
+[[ -n "${key[ShiftTab]}"  ]] && bindkey -- "${key[ShiftTab]}"  reverse-menu-complete
+
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+	autoload -Uz add-zle-hook-widget
+	function zle_application_mode_start {
+		echoti smkx
+	}
+	function zle_application_mode_stop {
+		echoti rmkx
+	}
+	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+fi
+
+# Load fzf integration
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
+source ~/.p10k.zsh
+export PATH="/usr/local/sbin:$PATH"
