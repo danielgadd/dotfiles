@@ -32,4 +32,7 @@ fi
  # setup tmux and tpm
  ln -s ~/.shell/tmux/tmux.conf ~/.tmux.conf
  git clone https://github.com/tmux-plugins/tpm ~/.shell/tmux/plugins/tpm && ~/.shell/tmux/plugins/tpm/bin/install_plugins
+
+ # git
+ ln -s ~/.shell/gitconfig ~/.gitconfig
  exit 0
