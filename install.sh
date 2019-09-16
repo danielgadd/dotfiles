@@ -10,14 +10,27 @@
 # 3. Install .vim and ~/.vimrc
 # 3. create INSTALLED.file to stop the installation
 
-
-if [ -f /bin/zsh ]
-then
-  echo "zsh found - setup can continue."
-else
-  echo "zsh shell could not be found. Exiting to bash."
-  exit 0
+if ! [ -x "$(command -v zsh)" ]; then
+  echo 'ERROR: zsh executable not found.' >&2
+  exit 1
 fi
+
+if ! [ -x "$(command -v git)" ]; then
+  echo 'ERROR: git executable not found.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v vim)" ]; then
+  echo 'ERROR: vim executable not found.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v tmux)" ]; then
+  echo 'ERROR: tmux executable not found.' >&2
+  exit 1
+fi
+
+
 # Keep it simple
 
  # Setup ZSH and zplugins
