@@ -1,5 +1,7 @@
 #ignore swap
 *.swp
 
-# Ignore vim plugins
+# Ignore plugins managed by plugin managers
 vim/bundle/
+tmux/plugins/
+zsh/zplugin/
