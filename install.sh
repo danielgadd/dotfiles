@@ -28,4 +28,8 @@ fi
  ln -s ~/.shell/vim/vimrc ~/.vimrc
  git clone https://github.com/VundleVim/Vundle.vim.git ~/.shell/vim/bundle/Vundle.vim
  vim +PluginInstall +qall
+
+ # setup tmux and tpm
+ ln -s ~/.shell/tmux/tmux.conf ~/.tmux.conf
+ git clone https://github.com/tmux-plugins/tpm ~/.shell/tmux/plugins/tpm && ~/.shell/tmux/plugins/tpm/bin/install_plugins
  exit 0
