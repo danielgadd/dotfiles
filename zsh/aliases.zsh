@@ -2,9 +2,6 @@
 
 alias irssi="TERM=screen-256color irssi"
 
-# basic stuff
-alias ls='ls -G'
-
 # Stupid zsh autocorrect gets in my way...
 alias killall="nocorrect killall"
 alias docker="nocorrect docker"
@@ -22,6 +19,11 @@ alias pc="pass -c \$(find ~/.password-store/ -name '*.gpg' | cut -d'/' -f 6-15 |
 # Pass mdv off to docker, because the brew version isnt great, using a function here as its makes sense
 function mdv() {
   docker run --rm -e 'MDV_THEME=889.8302' -v $PWD:/sandbox:ro -w /sandbox -it rawkode/mdv:latest $@
+}
+
+# gtt tracking - useful for tracking project work
+function gtt() {
+  docker run --rm -ti -v gtt-config:/root kriskbx/gitlab-time-tracker $@
 }
 
 # use fzf to open files into vim (with preview)

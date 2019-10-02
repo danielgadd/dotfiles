@@ -28,6 +28,7 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zplugin snippet OMZ::lib/history.zsh
 zplugin light zsh-users/zsh-history-substring-search
+zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 #powerline theme
 zplugin light romkatv/powerlevel10k
@@ -68,6 +69,9 @@ setopt NO_HIST_BEEP
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
+
+# p10k custom options (setting as env variable means I can make changes without touching ~/.p10k.conf
+export POWERLEVEL9K_RVM_SHOW_GEMSET=true
 
 # Allow substring search
 source ~/.shell/zsh/zplugin/plugins/zsh-users---zsh-history-substring-search/zsh-history-substring-search.zsh
