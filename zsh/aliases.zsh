@@ -2,6 +2,9 @@
 
 alias irssi="TERM=screen-256color irssi"
 
+# Add Colour to ls comman
+alias ls="ls -G"
+
 # Stupid zsh autocorrect gets in my way...
 alias killall="nocorrect killall"
 alias docker="nocorrect docker"

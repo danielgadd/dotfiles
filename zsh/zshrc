@@ -14,8 +14,9 @@ autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
 
-# Source my aliases
+# Source my aliases and functions
 source ~/.shell/zsh/aliases.zsh
+source ~/.shell/zsh/functions.zsh
 
 #auto cd into dir without typing cd
 setopt auto_cd
@@ -29,6 +30,8 @@ zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zplugin snippet OMZ::lib/history.zsh
 zplugin light zsh-users/zsh-history-substring-search
 zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zplugin light zsh-users/zsh-autosuggestions
+zplugin snippet OMZ::plugins/web-search/web-search.plugin.zsh
 
 #powerline theme
 zplugin light romkatv/powerlevel10k
@@ -124,6 +127,9 @@ fi
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
 export PATH="/usr/local/sbin:$PATH"
+
+# Set environment variables, like lscolor to make ls pretty (generated from: https://geoff.greer.fm/lscolors/)
+export LSCOLORS="GxfxcxdxBxegedabagacad"
 
 # p10k custom options (setting as env variable means I can make changes without touching ~/.p10k.conf - need to do this at the end,
 # otherwise the sourcing of the theme resets the env variables.
