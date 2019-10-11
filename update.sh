@@ -5,7 +5,7 @@ vim +PluginUpdate +qall
 
 #ZSH (zplug)
 zsh -ic "zplugin self-update"
-zsh -ic "zplugin update -all"
+zsh -ic "zplugin update"
 
 #tmux (tpm)
  ~/.shell/tmux/plugins/tpm/bin/update_plugins all
