@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # .zshrc
 
 #Set emacs style keyboard shortcuts
@@ -133,4 +140,6 @@ export LSCOLORS="GxfxcxdxBxegedabagacad"
 
 # p10k custom options (setting as env variable means I can make changes without touching ~/.p10k.conf - need to do this at the end,
 # otherwise the sourcing of the theme resets the env variables.
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs prompt_char)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs rvm kubecontext terraform aws context)
 export POWERLEVEL9K_RVM_SHOW_GEMSET=true
