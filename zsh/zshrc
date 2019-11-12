@@ -69,6 +69,10 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' special-dirs true
 
+# Some functions, like _apt, _dpkg and man are very slow. You can use a cache in order to proxy the list of results (like the list of available debian packages) Use a cache:
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path ~/.shell/zsh/cache/
+
 # Command History
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
