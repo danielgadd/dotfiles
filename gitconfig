@@ -45,10 +45,6 @@
         # git clone with submodules
         c = clone --recursive
 
-        # Initalise Business repos with proper config
-        init-work = !git config user.signingkey "0x370E4934F6822553" && git config user.email "daniel@redshield.co"
-[gpg]
-	program = /usr/local/bin/gpg2
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
