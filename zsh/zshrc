@@ -46,7 +46,7 @@ zplugin light romkatv/powerlevel10k
 
 # gpg-agent
 zplugin ice wait'1' lucid
-zplugin light laggardkernel/zsh-gpg-agent
+zplugin light axtl/gpg-agent.zsh
 
 # load kubernetes autocompletion, built into kubectl
 if [ $commands[kubectl] ]; then
