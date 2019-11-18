@@ -24,6 +24,7 @@ zstyle ':completion:*' menu select
 # Source my aliases and functions
 source ~/.shell/zsh/aliases.zsh
 source ~/.shell/zsh/functions.zsh
+source ~/.shell/zsh/tmux_ssh.zsh
 
 #auto cd into dir without typing cd
 setopt auto_cd
