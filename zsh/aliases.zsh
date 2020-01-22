@@ -3,7 +3,7 @@
 alias irssi="TERM=screen-256color irssi"
 
 # Add Colour to ls comman
-alias ls="ls -G"
+alias ls="ls -G --color"
 
 # Stupid zsh autocorrect gets in my way...
 alias killall="nocorrect killall"
@@ -14,7 +14,7 @@ alias pdk test unit='nocorrect pdk test unit'
 alias tmux="tmux -2"
 
 # I use pass, but typing "pass find and pass copy to find a password is WAY too hard
-alias pc="pass -c \$(find ~/.password-store/ -name '*.gpg' | cut -d'/' -f 6-15 | sed 's/.gpg//' | fzf +m)"
+alias pc="pass -c \$(find ~/.password-store/ -name '*.gpg' | cut -d'/' -f 5-20 | sed 's/.gpg//' | fzf +m)"
 
 # Pass mdv off to docker, because the brew version isnt great, using a function here as its makes sense
 function mdv() {
@@ -51,6 +51,10 @@ alias la='ls -lAh'
 
 # Kubernetes?
 alias k='kubectl'
+
+# Minikube
+alias mk='minikube'
+alias mkd='minikube dashboard'
 
 ## DISABLED as the plgin uses hardcodes dependencies and they error on zplugin updates
 # Spotify Controls

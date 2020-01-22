@@ -3,9 +3,9 @@ so ~/.shell/vim/plugins.vim
 " My vimrc
 
 "=== Make Vim Hard! ==="
-let g:hardtime_default_on = 1
-let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
+"let g:hardtime_default_on = 1
+"let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+"let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
 
 "=== Appearance === "
 

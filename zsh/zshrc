@@ -25,6 +25,7 @@ zstyle ':completion:*' menu select
 source ~/.shell/zsh/aliases.zsh
 source ~/.shell/zsh/functions.zsh
 source ~/.shell/zsh/tmux_ssh.zsh
+source ~/.shell/zsh/fzf.zsh
 
 #auto cd into dir without typing cd
 setopt auto_cd
@@ -40,13 +41,14 @@ zplugin light zsh-users/zsh-history-substring-search
 zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 zplugin light zsh-users/zsh-autosuggestions
 zplugin snippet OMZ::plugins/web-search/web-search.plugin.zsh
+zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+
+# gpg-agent
+#zplugin ice wait'1' lucid
+#zplugin light axtl/gpg-agent.zsh
 
 #powerline theme
 zplugin light romkatv/powerlevel10k
-
-# gpg-agent
-zplugin ice wait'1' lucid
-zplugin light axtl/gpg-agent.zsh
 
 # load kubernetes autocompletion, built into kubectl
 if [ $commands[kubectl] ]; then
@@ -136,9 +138,9 @@ fi
 # Load fzf integration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
-export PATH="/usr/local/sbin:$PATH"
 
 # Set environment variables, like lscolor to make ls pretty (generated from: https://geoff.greer.fm/lscolors/)
 export LSCOLORS="GxfxcxdxBxegedabagacad"
@@ -146,5 +148,10 @@ export LSCOLORS="GxfxcxdxBxegedabagacad"
 # p10k custom options (setting as env variable means I can make changes without touching ~/.p10k.conf - need to do this at the end,
 # otherwise the sourcing of the theme resets the env variables.
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs prompt_char)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs rvm kubecontext terraform aws context)
 export POWERLEVEL9K_RVM_SHOW_GEMSET=true
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# set ssh-agent
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
