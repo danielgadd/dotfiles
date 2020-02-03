@@ -48,7 +48,7 @@ zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 #zplugin light axtl/gpg-agent.zsh
 
 #powerline theme
-zplugin light romkatv/powerlevel10k
+zplugin ice depth=1; zplugin light romkatv/powerlevel10k
 
 # load kubernetes autocompletion, built into kubectl
 if [ $commands[kubectl] ]; then

@@ -29,6 +29,10 @@ function gtt() {
 # use fzf to open files into vim (with preview)
 alias vf="vim \$(fzf --preview 'head -100 {}')"
 
+# Copy/Paste anyone? (xclip on KDE isnt as straight-forward
+alias copy="xclip -rmlastnl -selection clipboard"
+alias past="xclip -o -rmlastnl -selection clipboard"
+
 # Setup directory stack aliases
 alias -- -='cd -'
 alias 1='cd -'
