@@ -45,6 +45,9 @@
         # git clone with submodules
         c = clone --recursive
 
+        # Initalise personal repos
+        init-personal = !git config user.signingkey "0x676D58AF72D6625D" && git config user.email "git@gadd.co.nz"
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

@@ -60,6 +60,9 @@ alias k='kubectl'
 alias mk='minikube'
 alias mkd='minikube dashboard'
 
+# DevOps commands, which I like to shorten
+alias tf='terraform'
+
 ## DISABLED as the plgin uses hardcodes dependencies and they error on zplugin updates
 # Spotify Controls
 #alias spp='spotify play'
