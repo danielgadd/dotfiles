@@ -16,6 +16,10 @@ alias tmux="tmux -2"
 # I use pass, but typing "pass find and pass copy to find a password is WAY too hard
 alias pc="pass -c \$(find ~/.password-store/ -name '*.gpg' | cut -d'/' -f 5-20 | sed 's/.gpg//' | fzf +m)"
 
+# I also use lots of AWS IAM creds, and setting the export command is hard, and remembering every profile
+# Using FZF and listing the creds from a file, is a time saver!
+alias setaws="export AWS_PROFILE=\$(cat ~/.aws/credentials | grep '^\[.*\]' | cut -d'[' -f2 | cut -d ']' -f 1 | fzf +m)"
+
 # Pass mdv off to docker, because the brew version isnt great, using a function here as its makes sense
 function mdv() {
   docker run --rm -e 'MDV_THEME=889.8302' -v $PWD:/sandbox:ro -w /sandbox -it rawkode/mdv:latest $@
@@ -62,6 +66,9 @@ alias mkd='minikube dashboard'
 
 # DevOps commands, which I like to shorten
 alias tf='terraform'
+
+# start an SSM session? (without all the "extra" commandline fu
+alias ssmc='aws ssm start-session --target'
 
 ## DISABLED as the plgin uses hardcodes dependencies and they error on zplugin updates
 # Spotify Controls

@@ -1,7 +1,6 @@
 [user]
-	name = Daniel Gadd
-	email = daniel@redshield.co
-        signingkey = 0x370E4934F6822553
+        useConfigOnly = true
+
 [core]
 	editor = vim
   	quotepath = false
@@ -47,9 +46,19 @@
 
         # Initalise personal repos
         init-personal = !git config user.signingkey "0x676D58AF72D6625D" && git config user.email "git@gadd.co.nz"
+	identity = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[user "work"]
+	name = Daniel Gadd
+	email = daniel@redshield.co
+	signingkey = 61A26B65BF6BC2DD
+
+[user "personal"]
+        name = Daniel Gadd
+        email = git@redshield.co
+        signingkey = ADA7E5E3E673F15F
