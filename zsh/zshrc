@@ -5,9 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# .zshrc
-
-#Set emacs style keyboard shortcuts
+#Set emacs style keyboard shortcuts, because they mirror bash's defaults so well...
 bindkey -e
 
 # Load zinit
