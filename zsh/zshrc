@@ -10,10 +10,11 @@ fi
 #Set emacs style keyboard shortcuts
 bindkey -e
 
-# Load zplugin
-declare -A ZPLGM
-ZPLGM[HOME_DIR]=~/.shell/zsh/zplugin
-source ~/.shell/zsh/zplugin/bin/zplugin.zsh
+# Load zinit
+declare -A ZINIT
+ZINIT[HOME_DIR]=~/.shell/zsh/zinit
+source ~/.shell/zsh/zinit/bin/zinit.zsh
+
 
 autoload -U promptinit; promptinit
 
@@ -33,22 +34,22 @@ setopt auto_cd
 # Setup Directory stack
 setopt auto_pushd autopushd pushdminus pushdsilent pushdtohome pushd_ignore_dups
 
-#Load zplugin plugins
-zplugin light zdharma/fast-syntax-highlighting
-zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zplugin snippet OMZ::lib/history.zsh
-zplugin light zsh-users/zsh-history-substring-search
-zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-zplugin light zsh-users/zsh-autosuggestions
-zplugin snippet OMZ::plugins/web-search/web-search.plugin.zsh
-zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+#Load zinit plugins
+zinit light zdharma/fast-syntax-highlighting
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit snippet OMZ::lib/history.zsh
+zinit light zsh-users/zsh-history-substring-search
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zinit light zsh-users/zsh-autosuggestions
+zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
+zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
 # gpg-agent
-#zplugin ice wait'1' lucid
-#zplugin light axtl/gpg-agent.zsh
+#zinit ice wait'1' lucid
+#zinit light axtl/gpg-agent.zsh
 
 #powerline theme
-zplugin ice depth=1; zplugin light romkatv/powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # load kubernetes autocompletion, built into kubectl
 if [ $commands[kubectl] ]; then
@@ -89,7 +90,7 @@ setopt HIST_IGNORE_DUPS
 
 
 # Allow substring search
-source ~/.shell/zsh/zplugin/plugins/zsh-users---zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.shell/zsh/zinit/plugins/zsh-users---zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # key bindings
 typeset -g -A key
