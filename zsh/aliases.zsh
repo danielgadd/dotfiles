@@ -66,6 +66,7 @@ alias mkd='minikube dashboard'
 
 # DevOps commands, which I like to shorten
 alias tf='terraform'
+alias tfw='terraform workspace'
 
 # start an SSM session? (without all the "extra" commandline fu
 alias ssmc='aws ssm start-session --target'
