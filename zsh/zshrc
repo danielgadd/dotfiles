@@ -54,6 +54,11 @@ if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
 
+# Load helm autocomplete, built into helm
+if [ $commands[helm] ]; then
+  source <(helm completion zsh)
+fi
+
 # Some Custom Autocomplete stuff
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
