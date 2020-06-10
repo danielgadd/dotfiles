@@ -3,7 +3,10 @@
 alias irssi="TERM=screen-256color irssi"
 
 # Add Colour to ls comman
-alias ls="ls -G --color"
+#alias ls="ls -G --color"
+
+# Use exa, not ls
+alias ls="exa --icons"
 
 # Stupid zsh autocorrect gets in my way...
 alias killall="nocorrect killall"
