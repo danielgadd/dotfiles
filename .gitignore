@@ -1,6 +1,9 @@
 #ignore swap
 *.swp
 
+#Ignore work related
+zsh/work-aliases.zsh
+
 # Ignore plugins managed by plugin managers
 vim/bundle/
 tmux/plugins/
