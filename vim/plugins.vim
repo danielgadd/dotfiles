@@ -3,7 +3,6 @@ set rtp+=~/.shell/vim/bundle/Vundle.vim
 call vundle#begin('~/.shell/vim/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
