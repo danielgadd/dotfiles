@@ -13,6 +13,11 @@ alias killall="nocorrect killall"
 alias docker="nocorrect docker"
 alias pdk test unit='nocorrect pdk test unit'
 
+# I use watch command, and sometimes having
+# my aliases work with it is super useful
+alias watch='watch '
+
+
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
 
