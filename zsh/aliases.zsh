@@ -75,6 +75,7 @@ alias mkd='minikube dashboard'
 # DevOps commands, which I like to shorten
 alias tf='terraform'
 alias tfw='terraform workspace'
+alias tfws='terraform workspace select'
 
 # start an SSM session? (without all the "extra" commandline fu
 alias ssmc='aws ssm start-session --target'
@@ -119,7 +120,9 @@ alias gbd='git branch -d'
 alias gbr='git branch --remote'
 alias gc='git commit -v'
 alias gcm='git checkout master'
-alias gcd='git checkout develop'
+alias gcd='git checkout dev'
+alias gcs='git checkout stage'
+alias gcp='git checkout prod'
 alias gco='git checkout'
 alias gd='git diff'
 alias gdca='git diff --cached'
