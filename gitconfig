@@ -12,6 +12,8 @@
 [push]
 	default = simple
 
+[pull]
+        rebase = true
 
 [merge]
 	tool = vimdiff
@@ -62,3 +64,6 @@
         name = Daniel Gadd
         email = git@gadd.co.nz
         signingkey = ADA7E5E3E673F15F
+
+[init]
+        templatedir = ~/.git_hooks

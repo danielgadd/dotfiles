@@ -48,4 +48,5 @@ fi
 
  # git
  ln -s ~/.shell/gitconfig ~/.gitconfig
+ ln -s ~/.shell/git ~/.git_hooks
  exit 0
