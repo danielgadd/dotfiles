@@ -67,6 +67,9 @@ alias la='ls -lAh'
 
 # Kubernetes?
 alias k='kubectl'
+alias kd='kubectl describe'
+alias kg='kubectl get'
+
 
 # Minikube
 alias mk='minikube'
