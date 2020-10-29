@@ -70,6 +70,8 @@ alias k='kubectl'
 alias kd='kubectl describe'
 alias kg='kubectl get'
 
+# K8s Flux - set the namespace
+alias fluxctl='FLUX_FORWARD_NAMESPACE=flux fluxctl'
 
 # Minikube
 alias mk='minikube'
