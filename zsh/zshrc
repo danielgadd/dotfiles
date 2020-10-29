@@ -13,7 +13,6 @@ declare -A ZINIT
 ZINIT[HOME_DIR]=~/.shell/zsh/zinit
 source ~/.shell/zsh/zinit/bin/zinit.zsh
 
-
 autoload -U promptinit; promptinit
 
 autoload -Uz compinit
@@ -91,7 +90,6 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
 
-
 # Allow substring search
 source ~/.shell/zsh/zinit/plugins/zsh-users---zsh-history-substring-search/zsh-history-substring-search.zsh
 
@@ -141,7 +139,6 @@ fi
 
 # Load fzf integration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
