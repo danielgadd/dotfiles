@@ -151,7 +151,7 @@ alias gsh='git show'
 alias gsps='git show --pretty=short --show-signature'
 alias gst='git status'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
-
+alias gap='git add -p'
 
 # source work aliases, which I dont keep in GitHub
 source ~/.shell/zsh/work-aliases.zsh
