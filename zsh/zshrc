@@ -154,9 +154,12 @@ export POWERLEVEL9K_RVM_SHOW_GEMSET=true
 #Add Krew to path
 export PATH="${PATH}:${HOME}/.krew/bin"
 
+# Add NPM
+export PATH="$PATH:$HOME/.npm-global/bin"
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin"
 source $HOME/.rvm/scripts/rvm
 
 # set ssh-agent
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"

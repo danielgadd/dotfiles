@@ -38,6 +38,9 @@ function gtt() {
   docker run --rm -ti -v gtt-config:/root kriskbx/gitlab-time-tracker $@
 }
 
+# To use Hybrid graphics, we need to set some envVars before the command
+alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only"
+
 # use fzf to open files into vim (with preview)
 alias vf="vim \$(fzf --preview 'head -100 {}')"
 
