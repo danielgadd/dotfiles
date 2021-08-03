@@ -10,13 +10,14 @@ alias ls="exa --icons"
 
 # Stupid zsh autocorrect gets in my way...
 alias killall="nocorrect killall"
-alias docker="nocorrect docker"
 alias pdk test unit='nocorrect pdk test unit'
 
 # I use watch command, and sometimes having
 # my aliases work with it is super useful
 alias watch='watch '
 
+# I recently started using podman over docker, luckly 90% of the syntax is the same soo...
+alias docker='podman'
 
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
@@ -72,6 +73,10 @@ alias la='ls -lAh'
 alias k='kubectl'
 alias kd='kubectl describe'
 alias kg='kubectl get'
+alias kgh='kubectl get helmreleases.helm.fluxcd.io'
+alias kgha='kubectl get helmreleases.helm.fluxcd.io --all-namespaces'
+alias kdh='kubectl describe helmreleases.helm.fluxcd.io'
+alias kk='kubectl krew'
 
 # K8s Flux - set the namespace
 alias fluxctl='FLUX_FORWARD_NAMESPACE=flux fluxctl'
@@ -114,6 +119,10 @@ alias tclsh="rlwrap tclsh"
 
 # Just because:
 alias yolo="git commit -am \"DEAL WITH IT\" && git push -f origin master"
+
+
+# Youtube DL anyone?
+alias ydl='podman run --rm -u $(id -u):$(id -g) -v $PWD:/data --security-opt label=disable vimagick/youtube-dl'
 
 # Git
 # Aliases

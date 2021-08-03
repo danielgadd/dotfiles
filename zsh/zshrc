@@ -48,14 +48,30 @@ zinit snippet OMZ::plugins/kubectl
 #powerline theme
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# load kubernetes autocompletion, built into kubectl
+
+# load kubernetes autocompletion, built into kubectl,
+# but, override some aliases I dont agree with.
 if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
+  alias kgsa='kubectl get services --all-namespaces'
+  alias kgno='kubectl get nodes --label-columns beta.kubernetes.io/instance-type,failure-domain.beta.kubernetes.io/zone,groupName'
 fi
+# do this before kubecolor gets aliased, otherwise it doesnt work
+
+# Use Kubecolor because its pretty
+alias kubectl=kubecolor
+# make completion work with kubecolor
+compdef kubecolor=kubectl
+
 
 # Load helm autocomplete, built into helm
 if [ $commands[helm] ]; then
   source <(helm completion zsh)
+fi
+
+# ccloud zsh autocomplete; built into ccloud
+if [ $commands[ccloud] ]; then
+  ccloud completion zsh > ${fpath[1]}/_ccloud
 fi
 
 # Some Custom Autocomplete stuff
@@ -142,6 +158,8 @@ fi
 
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
+
+export EDITOR="/usr/bin/vim"
 
 # Set environment variables, like lscolor to make ls pretty (generated from: https://geoff.greer.fm/lscolors/)
 export LSCOLORS="GxfxcxdxBxegedabagacad"
