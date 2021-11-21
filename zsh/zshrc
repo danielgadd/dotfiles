@@ -105,6 +105,7 @@ setopt NO_HIST_BEEP
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
+setopt HIST_REDUCE_BLANKS
 
 # Allow substring search
 source ~/.shell/zsh/zinit/plugins/zsh-users---zsh-history-substring-search/zsh-history-substring-search.zsh
