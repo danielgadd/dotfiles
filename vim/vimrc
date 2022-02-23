@@ -2,6 +2,7 @@ so ~/.shell/vim/plugins.vim
 
 " My vimrc
 
+"Disabled - VIM is too hard!
 "=== Make Vim Hard! ==="
 "let g:hardtime_default_on = 1
 "let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
@@ -59,6 +60,10 @@ so ~/.shell/vim/plugins.vim
     set scrolloff=999
     set sidescrolloff=7
     set sidescroll=1
+
+  "Unset the above scroll to default for git commits,
+  "Its REALLY annoying in VSCode with a small terminal frame!
+    autocmd Filetype gitcommit set scrolloff=0
 
   "use mouse support
     set mouse=a
