@@ -1,0 +1,10 @@
+[toplevel]
+
+# Who am I logged in as?
+whoami = sts get-caller-identity
+
+# Table list all instances in current context
+instances = ec2 describe-instances --query "Reservations[*].Instances[*].{name: Tags[?Key=='Name'] | [0].Value, instance_id: InstanceId, ip_address: PrivateIpAddress, state: State.Name, type: InstanceType}" --output table
+
+# Table list VPCs in current context
+vpcs = ec2 describe-vpcs --query "Vpcs[*].{name: Tags[?Key=='Name'] | [0].Value, vpc_id: VpcId, CIDR: CidrBlock, state: State}" --output table
