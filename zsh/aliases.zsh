@@ -1,23 +1,17 @@
 # Define persnal zsh aliases here
 
-alias irssi="TERM=screen-256color irssi"
-
-# Add Colour to ls comman
-#alias ls="ls -G --color"
-
 # Use exa, not ls
 alias ls="exa --icons"
 
 # Stupid zsh autocorrect gets in my way...
 alias killall="nocorrect killall"
-alias pdk test unit='nocorrect pdk test unit'
 
 # I use watch command, and sometimes having
 # my aliases work with it is super useful
 alias watch='watch '
 
-# I recently started using podman over docker, luckly 90% of the syntax is the same soo...
-alias docker='podman'
+# python2 is dead
+alias python='python3'
 
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
@@ -27,7 +21,14 @@ alias pc="pass -c \$(find ~/.password-store/ -name '*.gpg' | cut -d'/' -f 5-20 |
 
 # I also use lots of AWS IAM creds, and setting the export command is hard, and remembering every profile
 # Using FZF and listing the creds from a file, is a time saver!
-alias setaws="export AWS_PROFILE=\$(cat ~/.aws/credentials | grep '^\[.*\]' | cut -d'[' -f2 | cut -d ']' -f 1 | fzf +m)"
+# Turns out, the aws OMZ plugin handles reading the config files, so this is MUCH leaner
+alias setaws="export AWS_PROFILE=\$(aws_profiles | fzf +m)"
+
+# Along with setaws, granted is pretty sweet and supports profiles inside browers!
+alias assume="source assume"
+
+# While Im using setaws over assume to do my IAM role mgmt, the -ar flag for assume is super useful!
+alias awsconsole="assume -ar"
 
 # Pass mdv off to docker, because the brew version isnt great, using a function here as its makes sense
 function mdv() {
@@ -39,15 +40,20 @@ function gtt() {
   docker run --rm -ti -v gtt-config:/root kriskbx/gitlab-time-tracker $@
 }
 
-# To use Hybrid graphics, we need to set some envVars before the command
-alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only"
+# Shorten brew commands
+alias bubo='brew update && brew outdated'
+alias bubc='brew upgrade && brew cleanup'
+
+# Same as above, but with a 'g' for "greedy" (casks)
+alias bubog='brew update && brew outdated --greedy'
+alias bubcg='brew upgrade --greedy && brew cleanup'
 
 # use fzf to open files into vim (with preview)
 alias vf="vim \$(fzf --preview 'head -100 {}')"
 
 # Copy/Paste anyone? (xclip on KDE isnt as straight-forward
-alias copy="xclip -rmlastnl -selection clipboard"
-alias past="xclip -o -rmlastnl -selection clipboard"
+#alias copy="xclip -rmlastnl -selection clipboard"
+#alias past="xclip -o -rmlastnl -selection clipboard"
 
 # Setup directory stack aliases
 alias -- -='cd -'
@@ -73,33 +79,29 @@ alias la='ls -lAh'
 alias k='kubectl'
 alias kd='kubectl describe'
 alias kg='kubectl get'
-alias kgh='kubectl get helmreleases.helm.fluxcd.io'
-alias kgha='kubectl get helmreleases.helm.fluxcd.io --all-namespaces'
-alias kdh='kubectl describe helmreleases.helm.fluxcd.io'
 alias kk='kubectl krew'
+alias kges='kubectl get externalsecrets.kubernetes-client.io'
+alias kdes='kubectl describe externalsecrets.kubernetes-client.io'
 
-# K8s Flux - set the namespace
-alias fluxctl='FLUX_FORWARD_NAMESPACE=flux fluxctl'
+# In Kubectl the autocomplete on set-context is broken :(
+# So, lets fzf it...
+alias kcnf="kcn \$(kgns -o=Name | cut -d'/' -f 2 | fzf +m)"
 
 # Minikube
 alias mk='minikube'
 alias mkd='minikube dashboard'
 
-# DevOps commands, which I like to shorten
+# Terraform commands, which I like to shorten
 alias tf='terraform'
 alias tfw='terraform workspace'
 alias tfws='terraform workspace select'
 
 # start an SSM session? (without all the "extra" commandline fu
-alias ssmc='aws ssm start-session --target'
+#alias ssmc='aws ssm start-session --target'
 
-## DISABLED as the plgin uses hardcodes dependencies and they error on zplugin updates
-# Spotify Controls
-#alias spp='spotify play'
-#alias sppa='spotify pause'
-#alias spn='spotify next'
-#alias spl='spotify previous'
-#alias spst='spotify status'
+# ^ On second thought, lets use fzf to get the instanceID
+# Call aws CLI alias to keep this command simple!
+alias ssmc="aws ssm start-session --target \$(aws ssmc-instance-list | fzf +m | cut -d$'\t' -f1)"
 
 # Extra Git Stuff
 alias gbv="gb -vva"
@@ -120,9 +122,8 @@ alias tclsh="rlwrap tclsh"
 # Just because:
 alias yolo="git commit -am \"DEAL WITH IT\" && git push -f origin master"
 
-
 # Youtube DL anyone?
-alias ydl='podman run --rm -u $(id -u):$(id -g) -v $PWD:/data --security-opt label=disable vimagick/youtube-dl'
+alias ydl='docker run --rm -u $(id -u):$(id -g) -v $PWD:/data --security-opt label=disable vimagick/youtube-dl'
 
 # Git
 # Aliases
@@ -167,5 +168,5 @@ alias gst='git status'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gap='git add -p'
 
-# source work aliases, which I dont keep in GitHub
+# source work specific aliases, which I dont keep in GitHub
 source ~/.shell/zsh/work-aliases.zsh

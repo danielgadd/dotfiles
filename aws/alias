@@ -7,7 +7,10 @@ whoami = sts get-caller-identity
 ssm-ec2 = ssm start-session --target
 
 # Table list all instances in current context
-instances = ec2 describe-instances --query "Reservations[*].Instances[*].{name: Tags[?Key=='Name'] | [0].Value, instance_id: InstanceId, ip_address: PrivateIpAddress, state: State.Name, type: InstanceType}" --output table
+instances = ec2 describe-instances --query "Reservations[*].Instances[*].{name: Tags[?Key=='Name'] | [0].Value, instance_id: InstanceId, ip_address: PrivateIpAddress, state: State.Name, type: InstanceType, public_ip: PublicIpAddress}" --output table
+
+# Above, but a simple list, used for the ssmc zsh alias
+ssmc-instance-list = ec2 describe-instances --query "Reservations[*].Instances[*].{name: Tags[?Key=='Name'] | [0].Value, instance_id: InstanceId}" --filter Name=instance-state-name,Values=running --output text
 
 # Table list VPCs in current context
 vpcs = ec2 describe-vpcs --query "Vpcs[*].{name: Tags[?Key=='Name'] | [0].Value, vpc_id: VpcId, CIDR: CidrBlock, state: State}" --output table
@@ -15,19 +18,19 @@ vpcs = ec2 describe-vpcs --query "Vpcs[*].{name: Tags[?Key=='Name'] | [0].Value,
 # Some SG Groups stuff..
 myip =
   !f() {
-    dig +short myip.opendns.com @resolver1.opendns.com
+    curl ipv4.icanhazip.com
   }; f
 
 # Allow my IP on a SG (Great for testing) - Usage: aws allow-my-ip sg_id protocol port
 allow-my-ip =
   !f() {
     my_ip=$(aws myip)
-    aws ec2 authorize-security-group-ingress --group-name ${1} --protocol ${2} --port ${3} --cidr $my_ip/32
+    aws ec2 authorize-security-group-ingress --group-id ${1} --protocol ${2} --port ${3} --cidr $my_ip/32
   }; f
 
 # Above alias, but reversed to delete my IP
 revoke-my-ip =
   !f() {
     my_ip=$(aws myip)
-    aws ec2 revoke-security-group-ingress --group-name ${1} --protocol ${2} --port ${3} --cidr $my_ip/32
+    aws ec2 revoke-security-group-ingress --group-id ${1} --protocol ${2} --port ${3} --cidr $my_ip/32
   }; f

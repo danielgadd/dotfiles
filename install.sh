@@ -35,7 +35,7 @@ fi
 
  # Setup ZSH and zplugins
  ln -s ~/.shell/zsh/zshrc ~/.zshrc
- git clone https://github.com/zdharma/zinit.git ~/.shell/zsh/zinit/bin
+ git clone https://github.com/zdharma-continuum/zinit.git ~/.shell/zsh/zinit/bin
 
  # Setup Vim and Vundle
  ln -s ~/.shell/vim/vimrc ~/.vimrc

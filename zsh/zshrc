@@ -22,7 +22,6 @@ zstyle ':completion:*' menu select
 # Source my aliases and functions
 source ~/.shell/zsh/aliases.zsh
 source ~/.shell/zsh/functions.zsh
-source ~/.shell/zsh/tmux_ssh.zsh
 source ~/.shell/zsh/fzf.zsh
 
 #auto cd into dir without typing cd
@@ -32,7 +31,7 @@ setopt auto_cd
 setopt auto_pushd autopushd pushdminus pushdsilent pushdtohome pushd_ignore_dups
 
 #Load zinit plugins
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::lib/history.zsh
 zinit light zsh-users/zsh-history-substring-search
@@ -40,14 +39,19 @@ zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_
 zinit light zsh-users/zsh-autosuggestions
 zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
 zinit snippet OMZ::plugins/kubectl
+zinit snippet OMZ::plugins/aws
+zinit snippet OMZ::plugins/docker-compose
+zinit snippet OMZ::plugins/fzf
+#zinit snippet https://iterm2.com/shell_integration/zsh
 
 # gpg-agent
-#zinit ice wait'1' lucid
-#zinit light axtl/gpg-agent.zsh
+export GPG_TTY=$(tty)
+
+# Setup SSH to use secure enclave
+export SSH_AUTH_SOCK=/Users/danielgadd/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 #powerline theme
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 
 # load kubernetes autocompletion, built into kubectl,
 # but, override some aliases I dont agree with.
@@ -57,12 +61,12 @@ if [ $commands[kubectl] ]; then
   alias kgno='kubectl get nodes --label-columns beta.kubernetes.io/instance-type,failure-domain.beta.kubernetes.io/zone,groupName'
 fi
 # do this before kubecolor gets aliased, otherwise it doesnt work
-
 # Use Kubecolor because its pretty
-alias kubectl=kubecolor
-# make completion work with kubecolor
-compdef kubecolor=kubectl
+# DISABLED; See Bug: https://github.com/hidetatz/kubecolor/issues/78
+#alias kubectl=kubecolor
 
+# make completion work with kubecolor
+#compdef kubecolor=kubectl
 
 # Load helm autocomplete, built into helm
 if [ $commands[helm] ]; then
@@ -73,6 +77,18 @@ fi
 if [ $commands[ccloud] ]; then
   ccloud completion zsh > ${fpath[1]}/_ccloud
 fi
+
+# Setup brew autocomplete
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# aws autocomplete functions
+complete -C 'aws_completer' aws
 
 # Some Custom Autocomplete stuff
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -90,6 +106,11 @@ zstyle ':completion:*:descriptions' format $'\e[01;33m-- %d --\e[0m'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' special-dirs true
+
+# Docker needs some special config for autocomplete
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
 
 # Some functions, like _apt, _dpkg and man are very slow. You can use a cache in order to proxy the list of results (like the list of available debian packages) Use a cache:
 zstyle ':completion::complete:*' use-cache 1
@@ -154,8 +175,9 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
+# TODO: Do I need this?
 # Load fzf integration
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
@@ -170,19 +192,27 @@ export LSCOLORS="GxfxcxdxBxegedabagacad"
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs prompt_char)
 export POWERLEVEL9K_RVM_SHOW_GEMSET=true
 
+# Setup PATH
+export PATH="${PATH}:${HOME}/bin"
+
+
 #Add Krew to path
 export PATH="${PATH}:${HOME}/.krew/bin"
 
 # Add NPM
-export PATH="$PATH:$HOME/.npm-global/bin"
+#export PATH="$PATH:$HOME/.npm-global/bin"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin"
-source $HOME/.rvm/scripts/rvm
+# DISABLED
+#export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin"
+#source $HOME/.rvm/scripts/rvm
 
 # set ssh-agent
 # export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/aws-sso aws-sso
