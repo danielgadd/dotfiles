@@ -32,7 +32,7 @@ setopt auto_pushd autopushd pushdminus pushdsilent pushdtohome pushd_ignore_dups
 
 #Load zinit plugins
 zinit light zdharma-continuum/fast-syntax-highlighting
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+#zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::lib/history.zsh
 zinit light zsh-users/zsh-history-substring-search
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
@@ -42,31 +42,21 @@ zinit snippet OMZ::plugins/kubectl
 zinit snippet OMZ::plugins/aws
 zinit snippet OMZ::plugins/docker-compose
 zinit snippet OMZ::plugins/fzf
+zinit snippet OMZ::plugins/asdf
+zinit snippet OMZ::plugins/uv
 #zinit snippet https://iterm2.com/shell_integration/zsh
+
+# I use AWS config file, setting this is a no-brainer
+export AWS_SDK_LOAD_CONFIG=1
 
 # gpg-agent
 export GPG_TTY=$(tty)
 
 # Setup SSH to use secure enclave
-export SSH_AUTH_SOCK=/Users/danielgadd/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+#export SSH_AUTH_SOCK=/Users/danielgadd/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 #powerline theme
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# load kubernetes autocompletion, built into kubectl,
-# but, override some aliases I dont agree with.
-if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
-  alias kgsa='kubectl get services --all-namespaces'
-  alias kgno='kubectl get nodes --label-columns beta.kubernetes.io/instance-type,failure-domain.beta.kubernetes.io/zone,groupName'
-fi
-# do this before kubecolor gets aliased, otherwise it doesnt work
-# Use Kubecolor because its pretty
-# DISABLED; See Bug: https://github.com/hidetatz/kubecolor/issues/78
-#alias kubectl=kubecolor
-
-# make completion work with kubecolor
-#compdef kubecolor=kubectl
 
 # Load helm autocomplete, built into helm
 if [ $commands[helm] ]; then
@@ -77,6 +67,15 @@ fi
 if [ $commands[ccloud] ]; then
   ccloud completion zsh > ${fpath[1]}/_ccloud
 fi
+
+# asdf autocomplete
+#. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# Setup AWS Granted
+# Disabled; This is quite annoying - Until they improve it, Ill do manually
+#export GRANTED_ENABLE_AUTO_REASSUME=true
+fpath=(/Users/danielgadd/.granted/zsh_autocomplete/assume/ $fpath)
+fpath=(/Users/danielgadd/.granted/zsh_autocomplete/granted/ $fpath)
 
 # Setup brew autocomplete
 if type brew &>/dev/null
@@ -89,6 +88,7 @@ fi
 
 # aws autocomplete functions
 complete -C 'aws_completer' aws
+complete -C 'aws_completer' awslocal
 
 # Some Custom Autocomplete stuff
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -189,8 +189,8 @@ export LSCOLORS="GxfxcxdxBxegedabagacad"
 
 # p10k custom options (setting as env variable means I can make changes without touching ~/.p10k.conf - need to do this at the end,
 # otherwise the sourcing of the theme resets the env variables.
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs prompt_char)
-export POWERLEVEL9K_RVM_SHOW_GEMSET=true
+#export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs prompt_char)
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 
 # Setup PATH
 export PATH="${PATH}:${HOME}/bin"
@@ -202,17 +202,22 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 # Add NPM
 #export PATH="$PATH:$HOME/.npm-global/bin"
 
+# Add pipx
+export PATH="$PATH:$HOME/.local/bin"
+
+# Setup vscode shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# DISABLED
-#export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin"
-#source $HOME/.rvm/scripts/rvm
+# Add ASDF to PATH
+#export PATH="$PATH:${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 
 # set ssh-agent
 # export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/aws-sso aws-sso
+

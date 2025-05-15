@@ -7,7 +7,7 @@ whoami = sts get-caller-identity
 ssm-ec2 = ssm start-session --target
 
 # Table list all instances in current context
-instances = ec2 describe-instances --query "Reservations[*].Instances[*].{name: Tags[?Key=='Name'] | [0].Value, instance_id: InstanceId, ip_address: PrivateIpAddress, state: State.Name, type: InstanceType, public_ip: PublicIpAddress}" --output table
+instances = ec2 describe-instances --query "Reservations[*].Instances[*].{Name: Tags[?Key=='Name'] | [0].Value, instance_id: InstanceId, ip_address: PrivateIpAddress, state: State.Name, type: InstanceType, public_ip: PublicIpAddress, zone: Placement.AvailabilityZone}" --output table
 
 # Above, but a simple list, used for the ssmc zsh alias
 ssmc-instance-list = ec2 describe-instances --query "Reservations[*].Instances[*].{name: Tags[?Key=='Name'] | [0].Value, instance_id: InstanceId}" --filter Name=instance-state-name,Values=running --output text
@@ -34,3 +34,11 @@ revoke-my-ip =
     my_ip=$(aws myip)
     aws ec2 revoke-security-group-ingress --group-id ${1} --protocol ${2} --port ${3} --cidr $my_ip/32
   }; f
+
+# Show rules for a specific SG
+sg-rules = !f() { aws ec2 describe-security-groups \
+    --query "SecurityGroups[].IpPermissions[].[FromPort,ToPort,IpProtocol,join(',',IpRanges[].CidrIp)]" \
+    --group-id "$1" --output text; }; f
+
+# List Child Accounts in an AWS organisation - as a table
+accounts = organizations list-accounts --query "Accounts[].{Name: Name, ID: Id, Status: Status}" --output table --no-paginate

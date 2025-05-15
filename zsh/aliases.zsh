@@ -1,7 +1,7 @@
 # Define persnal zsh aliases here
 
-# Use exa, not ls
-alias ls="exa --icons"
+# Use eza, not ls
+alias ls="eza --icons=auto"
 
 # Stupid zsh autocorrect gets in my way...
 alias killall="nocorrect killall"
@@ -12,6 +12,7 @@ alias watch='watch '
 
 # python2 is dead
 alias python='python3'
+alias pip='pip3'
 
 # Set an alias for tmux (as it has problem with 256 colours)
 alias tmux="tmux -2"
@@ -22,13 +23,15 @@ alias pc="pass -c \$(find ~/.password-store/ -name '*.gpg' | cut -d'/' -f 5-20 |
 # I also use lots of AWS IAM creds, and setting the export command is hard, and remembering every profile
 # Using FZF and listing the creds from a file, is a time saver!
 # Turns out, the aws OMZ plugin handles reading the config files, so this is MUCH leaner
-alias setaws="export AWS_PROFILE=\$(aws_profiles | fzf +m)"
-
-# Along with setaws, granted is pretty sweet and supports profiles inside browers!
-alias assume="source assume"
+## DISABLED; Trialling assume command for now
+#alias setaws="export AWS_PROFILE=\$(aws_profiles | fzf +m)"
 
 # While Im using setaws over assume to do my IAM role mgmt, the -ar flag for assume is super useful!
 alias awsconsole="assume -ar"
+alias awsc="awsconsole"
+alias awscs="awsconsole -s"
+alias setaws="assume"
+alias awss="aws --cli-auto-prompt"
 
 # Pass mdv off to docker, because the brew version isnt great, using a function here as its makes sense
 function mdv() {
@@ -50,10 +53,6 @@ alias bubcg='brew upgrade --greedy && brew cleanup'
 
 # use fzf to open files into vim (with preview)
 alias vf="vim \$(fzf --preview 'head -100 {}')"
-
-# Copy/Paste anyone? (xclip on KDE isnt as straight-forward
-#alias copy="xclip -rmlastnl -selection clipboard"
-#alias past="xclip -o -rmlastnl -selection clipboard"
 
 # Setup directory stack aliases
 alias -- -='cd -'
@@ -83,9 +82,25 @@ alias kk='kubectl krew'
 alias kges='kubectl get externalsecrets.kubernetes-client.io'
 alias kdes='kubectl describe externalsecrets.kubernetes-client.io'
 
+# load kubernetes autocompletion, built into kubectl,
+# but, override some aliases I dont agree with.
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+  alias kgsa='kubectl get services --all-namespaces'
+  alias kgno='kubectl get nodes --label-columns beta.kubernetes.io/instance-type,failure-domain.beta.kubernetes.io/zone,groupName'
+fi
+
+# make completion work with kubecolor
+compdef kubecolor=kubectl
+# Kubecolor makes output look pretty
+alias kubectl=kubecolor
+
 # In Kubectl the autocomplete on set-context is broken :(
 # So, lets fzf it...
 alias kcnf="kcn \$(kgns -o=Name | cut -d'/' -f 2 | fzf +m)"
+
+# Honestly, sourcing venv is hard when I dont use VS-Code
+alias venv='source .venv/bin/activate'
 
 # Minikube
 alias mk='minikube'
@@ -96,16 +111,18 @@ alias tf='terraform'
 alias tfw='terraform workspace'
 alias tfws='terraform workspace select'
 
-# start an SSM session? (without all the "extra" commandline fu
-#alias ssmc='aws ssm start-session --target'
-
-# ^ On second thought, lets use fzf to get the instanceID
-# Call aws CLI alias to keep this command simple!
+# start an SSM session? (without all the "extra" commandline fu)
+# Lets use fzf to get the instanceID from the AWS APIs
+# Call aws CLI alias I made to keep this command simple!
 alias ssmc="aws ssm start-session --target \$(aws ssmc-instance-list | fzf +m | cut -d$'\t' -f1)"
+
+# Use AWS API to get parameters stored in AWS
+alias ssmps="aws ssm get-parameter --with-decryption --name \$(aws ssm get-parameters-by-path --path / --recursive --query 'Parameters[*].{Name: Name}' --output text | fzf +m) | jq '.Parameter.Value' | cut -d'\"' -f 2"
 
 # Extra Git Stuff
 alias gbv="gb -vva"
 alias gpo="gp origin"
+alias gcof="gco -b"
 
 alias glg="nocorrect git lg"
 
@@ -115,9 +132,6 @@ alias dpsa="docker ps -a"
 
 # Useful Docker containers
 alias 1804dev="docker run -ti --rm ubuntu:18.04 /bin/bash"
-
-# Development Commands
-alias tclsh="rlwrap tclsh"
 
 # Just because:
 alias yolo="git commit -am \"DEAL WITH IT\" && git push -f origin master"
@@ -167,6 +181,10 @@ alias gsps='git show --pretty=short --show-signature'
 alias gst='git status'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gap='git add -p'
+
+# Ollama Quick Access
+alias ochat='ollama run llama2'
+alias ocode='ollama run codellama'
 
 # source work specific aliases, which I dont keep in GitHub
 source ~/.shell/zsh/work-aliases.zsh

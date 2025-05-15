@@ -1,0 +1,16 @@
+#!/bin/sh
+# Prevent you from pushing commits that have "WIP" in the message
+#  But only commits I made.. I cant control other developers
+
+branch=`git branch 2>/dev/null | grep '^*' | colrm 1 2`
+author=`git config --get user.name`
+
+# Look up commits made by me, by looking up the configured user in each repo
+git log $branch --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --grep "WIP" | grep "$author"
+
+if [[ $? -eq 0 ]]; then
+  echo "Found commits with WIP messages"
+  exit 1
+fi
+
+exit 0
